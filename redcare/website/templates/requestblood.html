@@ -1,0 +1,53 @@
+<!-- your_template.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h3 class="mb-4">Request For Blood</h3>
+    <form method="POST" class="needs-validation" novalidate> 
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ form.phone.errors }}
+            <label for="{{ form.phone.id_for_label }}" class="form-label">Contact Number</label>
+            {{ form.phone }}
+            <div class="invalid-feedback">
+                Please provide a valid contact number.
+            </div>
+        </div>
+        <div class="mb-3">
+            {{ form.city.errors }}
+            <label for="{{ form.city.id_for_label }}" class="form-label">City</label>
+            <input type="text" name="{{ form.city.html_name }}" id="{{ form.city.id_for_label }}" class="form-control form-control-sm" required maxlength="50">
+            <div class="invalid-feedback">
+                Please provide a city name.
+            </div>
+        </div>
+        <div class="mb-3">
+            {{ form.address.errors }}
+            <label for="{{ form.address.id_for_label }}" class="form-label">Address</label>
+            <textarea name="{{ form.address.html_name }}" id="{{ form.address.id_for_label }}" class="form-control form-control-sm custom-textarea" rows="3" required maxlength="100"></textarea>
+            <div class="invalid-feedback">
+                Please provide an address.
+            </div>
+        </div>
+        <div class="mb-3">
+            {{ form.blood_group.errors }}
+            <label for="{{ form.blood_group.id_for_label }}" class="form-label">Blood Group</label>
+            {{ form.blood_group }}
+            <div class="invalid-feedback">
+                Please select a blood group.
+            </div>
+        </div>
+        <div class="mb-3">
+            {{ form.date.errors }}
+            <label for="{{ form.date.id_for_label }}" class="form-label">Date For Donation</label>
+            {{ form.date }}
+            <div class="invalid-feedback">
+                Please provide a valid date.
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %}

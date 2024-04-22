@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{%block content%}
+<div class="col-md-6 offset-md-3">
+<h1>Please Register Your Details</h1>
+<br>
+<form method="POST" action="">
+    {% csrf_token %}
+
+    {%if form.errors%}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        Your form has form Errors
+        {%for field in form%}
+            {%if field in form%}
+            {{field.errors}}
+            {%endif%}
+        {%endfor%}
+        <botton type="button" class='btn-close' data-bs-dismiss="alert" aria-label="close">
+
+        </botton>
+        </div>
+    {%endif%}
+    {{form.as_p}}
+    </br>
+    <button type="submit" class="btn btn-primary">Register</button>
+    {% csrf_token %}
+    </form>
+</div>
+{% endblock %}

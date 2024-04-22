@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{%block content%}
+<div class="col-md-6 offset-md-3">
+    {%if user.is_authenticated%}
+    <h1><center>Welcome to the home page of RedCare</center></h1>
+    <h1><center>you can donate and request for blood using this app</center></h1>
+    <h1><center>Welcome to the home page of RedCare</center></h1>
+    <h1><center>you can donate and request for blood using this app</center></h1>
+    <h1><center>Welcome to the home page of RedCare</center></h1>
+    <h1><center>you can donate and request for blood using this app</center></h1>
+    {%else%}
+<h1>Login</h1><br>
+<form method="POST" action="{%url 'home'%}">
+    {% csrf_token %}
+      <div class="mb-3">
+        <input type="text" class="form-control" name="username", placeholder="Enter Username" required>
+        <div class="mb-3"><br>
+        <input type="password" class="form-control", name="password", placeholder="Enter Password"required >
+      </div>
+      <button type="submit" class="btn btn-primary">Login</button>
+</form>
+</div>
+{%endif%}
+{%endblock%}

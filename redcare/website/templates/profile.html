@@ -1,0 +1,126 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+<style>
+    .larger-font {
+        font-size: 20px; /* Adjust the font size as needed */
+    }
+</style>
+
+{% block content %}
+<div class="container-fluid mt-4">
+    <div class="row align-items-center">
+        <div class="col-md-5">
+            <div class="text-center mb-4">
+                <img src="{{ customuser.image.url }}" alt="" class="img-fluid rounded-circle mb-3" style="width: 300px; height: 300px;">
+                <br>
+                {% if profile.ready_to_donate %}
+                    <button id="donateButton" class="btn btn-success btn-lg larger-font">I'm Ready To Donate</button>
+                {% else %}
+                    <button id="donateButton" class="btn btn-danger btn-lg larger-font">I'm Not Ready To Donate</button>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title larger-font">Profile Information</h3>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item larger-font"><strong>Username:</strong> {{ user }}</li>
+                        <li class="list-group-item larger-font"><strong>Full Name:</strong> {{ request.user.full_name }}</li>
+                        <li class="list-group-item larger-font"><strong>Email:</strong> {{ user.email }}</li>
+                        <li class="list-group-item larger-font"><strong>Date Of Birth:</strong> {{ user.date_of_birth }}</li>
+                        <li class="list-group-item larger-font"><strong>Phone Number:</strong> {{ user.phone }}</li>
+                        <li class="list-group-item larger-font"><strong>Blood Group:</strong> {{ user.blood_group }}</li>
+                        <li class="list-group-item larger-font"><strong>Address:</strong> {{ user.address }}</li>
+                    </ul>
+                    <a href="editprofile" class="btn btn-outline-danger mt-4 larger-font">Edit Profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Get reference to the button
+        var donateButton = document.getElementById("donateButton");
+        
+        // Add event listener for button click
+        donateButton.addEventListener("click", function() {
+            // Make AJAX request to change_status URL
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "{% url 'change_status' %}", true);
+    
+            // Add CSRF token to request headers
+            xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+    
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // Toggle button text and styling based on response
+                    if (xhr.responseText === "ready") {
+                        donateButton.textContent = "I'm Not Ready To Donate";
+                        donateButton.className = "btn btn-danger btn-lg larger-font";
+                        // If user is ready to donate, redirect to home page
+                        window.location.href = "{% url 'home' %}";
+                    } else {
+                        donateButton.textContent = "I'm Ready To Donate";
+                        donateButton.className = "btn btn-success btn-lg larger-font";
+                    }
+                }
+            };
+            xhr.send();
+        });
+    });
+    </script>
+    
+    
+
+
+
+{% comment %} {% extends "base.html" %}
+{% load static %}
+
+<style>
+    .larger-font {
+        font-size: 20px; /* Adjust the font size as needed */
+    }
+</style>
+
+{% block content %}
+<div class="container-fluid mt-4">
+    <div class="row align-items-center">
+        <div class="col-md-5">
+            <div class="text-center mb-4">
+                <img src="{{ customuser.image.url }}" alt="" class="img-fluid rounded-circle mb-3" style="width: 300px; height: 300px;">
+                <br>
+                {% if donor_profile.ready_to_donate %}
+                    <a href="/change_status/" class="btn btn-success btn-lg larger-font">I'm Ready To Donate</a>
+                {% else %}
+                    <a href="/change_status/" class="btn btn-danger btn-lg larger-font">I'm Not Ready To Donate</a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title larger-font">Profile Information</h3>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item larger-font"><strong>Username:</strong> {{ user }}</li>
+                        <li class="list-group-item larger-font"><strong>Full Name:</strong> {{ request.user.full_name }}</li>
+                        <li class="list-group-item larger-font"><strong>Email:</strong> {{ user.email }}</li>
+                        <li class="list-group-item larger-font"><strong>Date Of Birth:</strong> {{ user.date_of_birth }}</li>
+                        <li class="list-group-item larger-font"><strong>Phone Number:</strong> {{ user.phone }}</li>
+                        <li class="list-group-item larger-font"><strong>Blood Group:</strong> {{ user.blood_group }}</li>
+                        <li class="list-group-item larger-font"><strong>Address:</strong> {{ user.address }}</li>
+                    </ul>
+                    <a href="editprofile" class="btn btn-outline-danger mt-4 larger-font">Edit Profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+ {% endcomment %}

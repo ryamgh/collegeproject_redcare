@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <h3 class="text-center">All Blood Requests</h3>
+    <br>
+    <table class="table table-sm table-bordered">
+        <tr class="table-danger">
+            <th>Phone</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>Blood Group</th>
+            <th>Date</th>
+        </tr>
+        {% for request in blood_requests %}
+        <tr>
+            <td>{{ request.phone }}</td>
+            <td>{{ request.address }}</td>
+            <td>{{ request.city }}</td>
+            <td>{{ request.blood_group }}</td>
+            <td>{{ request.date }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

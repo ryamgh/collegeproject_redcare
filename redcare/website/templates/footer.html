@@ -1,0 +1,55 @@
+{% comment %} <footer class="footer">
+    <div class="container text-center">
+
+        {%if user.is_authenticated%}
+
+        <ul class="nav justify-content-center border-bottom pb-2 mb-2">
+            <li class="nav-item"><a href="{%url 'home'%}" class="nav-link px-2 text-white">Home</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-white">Why Donate?</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-white">Why RedCare?</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-white">About Us</a></li>
+        </ul>
+
+        {%else%}
+
+        <ul class="nav justify-content-center border-bottom pb-2 mb-2">
+            {% comment %} <li class="nav-item"><a href="{%url 'home'%}" class="nav-link px-2 text-white">Home</a></li> 
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-white">Why Donate?</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-white">Why RedCare?</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-white">About Us</a></li>
+        </ul>
+        {%endif%}
+        <p class="text-white">&copy; 2024 <b style="color:red">RedCare</b></p>
+        
+    </div>
+</footer> {% endcomment %}
+
+<footer class="footer">
+    <div class="container text-center">
+
+        {%if user.is_authenticated%}
+
+        <ul class="nav justify-content-center border-bottom pb-2 mb-2">
+            <li class="nav-item"><a href="{%url 'home'%}" class="nav-link px-2 text-white">Home</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-white">Why Donate?</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-white">Why RedCare?</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-white">About Us</a></li>
+        </ul>
+
+        {%else%}
+
+        <ul class="nav justify-content-center border-bottom pb-2 mb-2">
+            {% comment %} <li class="nav-item"><a href="{%url 'home'%}" class="nav-link px-2 text-white">Home</a></li> {% endcomment %}
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-white">Why Donate?</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-white">Why RedCare?</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-white">About Us</a></li>
+        </ul>
+        {%endif%}
+        <p class="text-white">&copy; 2024 <b style="color:red">RedCare</b></p>
+        
+    </div>
+</footer>
